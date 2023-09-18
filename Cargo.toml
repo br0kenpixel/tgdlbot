@@ -1,0 +1,20 @@
+[package]
+name = "tgdlbot"
+version = "1.0.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1.25.0", features = [
+    "macros",
+    "process",
+    "rt-multi-thread",
+] }
+carapax = "0.12.0"
+tempdir = "0.3.7"
+shellexpand = "3.1.0"
+serde = { version = "1.0.188", features = ["derive"] }
+serde_json = "1.0.107"
+
+[profile.release]
+strip = true
+panic = "abort"

@@ -1,0 +1,16 @@
+#
+# This is an example file of how *YOUR* `config.toml` is supposed to look.
+# You can delete the `[target.*]` sections if you don't plan to
+# cross-compile this project.
+#
+
+[target.armv7-unknown-linux-musleabihf]
+linker = "arm-linux-gnueabihf-ld"
+
+[target.x86_64-unknown-linux-gnu]
+linker = "x86_64-unknown-linux-gnu-gcc"
+
+[env]
+BOT_TOKEN = "-YOUR-TOKEN-"
+OWNER_ID = "-YOUR-ACCOUNT-ID-"
+STORAGE_FILE = "~/tgdlstorage"
