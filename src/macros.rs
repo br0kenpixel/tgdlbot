@@ -37,7 +37,15 @@ macro_rules! allowed_check {
             send_message!(
                 $api,
                 $chat_id.clone(),
-                "❌ You are not allowed to use this bot"
+                format!(
+                    concat!(
+                        "❌ You are not allowed to use this bot\n",
+                        "► Please ask the administrator to allow you account - ",
+                        "@{}"
+                    ),
+                    $user.id
+                ),
+                ParseMode::Markdown
             )
             .await?;
 
