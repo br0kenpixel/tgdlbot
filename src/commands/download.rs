@@ -1,7 +1,7 @@
 use crate::{allowed_check, downloader::DownloadManager, send_message, STORAGE};
 use carapax::{
     methods::{EditMessageText, SendMessage, SendVideo},
-    types::{ChatId, InputFile, Text, User},
+    types::{ChatId, InputFile, ParseMode, Text, User},
     Api, ExecuteError, Ref,
 };
 
@@ -14,6 +14,11 @@ pub(crate) async fn download(
     allowed_check!(api, chat_id, user);
 
     let video_link = message.data;
+
+    if !video_link.starts_with("https://") {
+        return Ok(());
+    }
+
     let message = send_message!(api, chat_id.clone(), "⏳ Please wait...").await?;
 
     let file = match DownloadManager::download(&video_link).await {
