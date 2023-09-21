@@ -79,11 +79,10 @@ impl AppStorage {
             return true;
         }
 
-        if let Some(chat_id) = from_chat {
-            return self.is_chat_allowed(chat_id).await;
+        match from_chat {
+            Some(value) if self.is_chat_allowed(value).await => true,
+            _ => self.is_user_allowed(&from_user.id).await,
         }
-
-        false
     }
 
     pub async fn load_from_disk(&self) -> Result<(), io::Error> {
